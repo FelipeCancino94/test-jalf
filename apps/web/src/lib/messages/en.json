@@ -1,0 +1,18 @@
+{
+	"nav.home": "Home",
+	"nav.myRsvps": "My RSVPs",
+	"events.title": "Events",
+	"events.spotsLeft": "{count} spots left",
+	"events.full": "Full",
+	"events.filter.upcoming": "Upcoming",
+	"events.filter.past": "Past",
+	"events.filter.all": "All",
+	"event.rsvp": "RSVP",
+	"event.cancelRsvp": "Cancel RSVP",
+	"event.attendees": "{count} going",
+	"mine.title": "My RSVPs",
+	"mine.empty": "You haven't RSVP'd to anything yet. Browse events to find something.",
+	"mine.browseCta": "Browse events",
+	"common.loading": "Loading…",
+	"common.error": "Something went wrong. Try again."
+}
