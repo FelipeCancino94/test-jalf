@@ -19,6 +19,6 @@ number of spots. Only a full page reload fixed it."
 
 3–5 sentences total:
 
-- **Observed:**
-- **Hypothesis:**
-- **Fix:**
+- **Observed:** When I click in RSVP or a cancel the badge counter of spots left change only in the event detail, the badge in the list of events not change, only changes when I reload the page, the status of button change correctly between the rsvp and the cancel state, the list of events and the event details are in separate statements (Not connected by props).
+- **Hypothesis:** The section of event list is saved in cache but in rsvp or cancel function the cache for the section of event list is not cleaned, try to force the cache cleaning fix the bug.
+- **Fix:** Add the function invalidateQueries of queryClient to refresh the cache of events data.
