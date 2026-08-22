@@ -19,6 +19,6 @@ browsers, same thing."
 
 3–5 sentences total:
 
-- **Observed:**
-- **Hypothesis:**
-- **Fix:**
+- **Observed:** The change when I clicked the button to show the past events or all events not work, I see a little "jump" but it show the same content.
+- **Hypothesis:** The value for the filter when change the value it's not working or the validations for show the filter is not correctly used, maybe the setFilter not change the value.
+- **Fix:** The cause of the bug is for an useEffect in the file useEvents.ts, thishooks only set the (setFilter) to "upcoming" when the events or the filter values changes each time, When I change the filter value with the click event the useEffect detect the change and set again "upcoming" value to filter. I delete the useEffect because is not necessary to use because ethe value "upcoming" is the default value when the function is called.

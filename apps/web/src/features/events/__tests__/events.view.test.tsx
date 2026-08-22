@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import type { EventItem } from "../events.types";
 import { EventsView, type EventsViewProps } from "../events.view";
@@ -101,4 +101,23 @@ describe("EventsView — error", () => {
 			screen.getByText("Something went wrong. Try again."),
 		).toBeInTheDocument();
 	});
+});
+
+// ---------------------------------------------------------------------------
+// BUG 2 - Filtering events
+// ---------------------------------------------------------------------------
+
+describe("Filtering events", () => {
+	it.each(["upcoming", "past", "all"] as const)(
+		"emits '%s' when that filter is clicked",
+		(value) => {
+			const onFilterChange = vi.fn();
+			render(<EventsView {...makeProps({ onFilterChange })} />);
+
+			fireEvent.click(screen.getByText(new RegExp(value, "i")));
+
+			expect(onFilterChange).toHaveBeenCalledWith(value);
+			expect(onFilterChange).toHaveBeenCalledTimes(1);
+		},
+	);
 });

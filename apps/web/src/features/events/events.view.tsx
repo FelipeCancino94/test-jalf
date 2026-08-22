@@ -64,6 +64,7 @@ export function EventsView({
 						key={value}
 						variant={filter === value ? "primary" : "ghost"}
 						onClick={() => onFilterChange(value)}
+						data-testid="event-filter"
 					>
 						{FILTER_LABELS[value]}
 					</Button>

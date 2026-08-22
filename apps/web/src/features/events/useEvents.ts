@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { fetchEventsServerFn } from "./events.fn";
 import type { EventFilter, EventItem } from "./events.types";
 
@@ -33,13 +33,6 @@ export function useEvents() {
 				return allEvents;
 		}
 	}, [allEvents, filter]);
-
-	// default to upcoming once events load
-	useEffect(() => {
-		if (events.length > 0) {
-			setFilter("upcoming");
-		}
-	}, [events, filter]);
 
 	return {
 		events,
