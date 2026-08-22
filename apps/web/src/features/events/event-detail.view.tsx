@@ -48,7 +48,7 @@ export function EventDetailView({
 						{isFull ? (
 							<Badge variant="warning">{t("events.full")}</Badge>
 						) : (
-							<Badge>{t("events.spotsLeft", { count: spotsLeft })}</Badge>
+							<Badge>{ spotsLeft === 1 ? t("events.oneSpotLeft") : t("events.spotsLeft", { count: spotsLeft }) }</Badge>
 						)}
 					</div>
 					<p className="text-zinc-300">{event.description}</p>
