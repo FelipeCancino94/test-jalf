@@ -31,7 +31,6 @@ export function EventsView({
 	isError,
 }: EventsViewProps) {
 	let content: ReactNode;
-	console.log(events)
 	if (isError) {
 		content = <p className="text-red-400">{t("common.error")}</p>;
 	} else if (isLoading) {
