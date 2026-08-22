@@ -31,6 +31,7 @@ export function EventsView({
 	isError,
 }: EventsViewProps) {
 	let content: ReactNode;
+	console.log(events)
 	if (isError) {
 		content = <p className="text-red-400">{t("common.error")}</p>;
 	} else if (isLoading) {
@@ -77,7 +78,7 @@ export function EventsView({
 function EventCard({ event }: { event: EventItem }) {
 	const spotsLeft = event.capacity - event.attendeeCount;
 	// An event with no spots left is full.
-	const isFull = spotsLeft <= 1;
+	const isFull = spotsLeft <= 0;
 
 	return (
 		<li>
@@ -100,7 +101,7 @@ function EventCard({ event }: { event: EventItem }) {
 						{isFull ? (
 							<Badge variant="warning">{t("events.full")}</Badge>
 						) : (
-							<Badge>{t("events.spotsLeft", { count: spotsLeft })}</Badge>
+							<Badge>{ spotsLeft === 1 ? t("events.oneSpotLeft") : t("events.spotsLeft", { count: spotsLeft })}</Badge>
 						)}
 					</div>
 				</Card>

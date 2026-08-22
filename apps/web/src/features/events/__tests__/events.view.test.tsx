@@ -75,6 +75,17 @@ describe("EventsView — event cards", () => {
 		expect(screen.getByText("3 spots left")).toBeInTheDocument();
 		expect(screen.queryByText("Full")).not.toBeInTheDocument();
 	});
+
+	// --------------------------
+	// Regression test for: BUG-1
+	// --------------------------
+	it("show the last spot available when exactly one spot remains", () => {
+		const events = [makeEvent({ capacity: 20, attendeeCount: 19 })];
+		render(<EventsView {...makeProps({ events })} />);
+
+		expect(screen.getByText("1 spot left")).toBeInTheDocument();
+		expect(screen.queryByText("Full")).not.toBeInTheDocument();
+	});
 });
 
 // ---------------------------------------------------------------------------

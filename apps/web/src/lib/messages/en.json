@@ -3,6 +3,7 @@
 	"nav.myRsvps": "My RSVPs",
 	"events.title": "Events",
 	"events.spotsLeft": "{count} spots left",
+	"events.oneSpotLeft": "1 spot left",
 	"events.full": "Full",
 	"events.filter.upcoming": "Upcoming",
 	"events.filter.past": "Past",

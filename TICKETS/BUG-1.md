@@ -18,6 +18,6 @@ worked. Which is right? She got in, but another member saw Full and gave up."
 
 3–5 sentences total:
 
-- **Observed:**
-- **Hypothesis:**
-- **Fix:**
+- **Observed:** The Badge in card list shows "Full" when remains 1 spot for the event, in the event details show it the badge show 1 spots left and the RSVP button enable, inconsistencies in the badge information between the event card badge and the detail event badge and show it in event detail the badge 1 spots left have an error of pluralize text when is only 1 spot (singular).
+- **Hypothesis:** Error in function to get the remaining spots avaibale or error in validation for the full badge
+- **Fix:** In events.view.tsx I change the validation spotsLeft <= 1 to spotsLeft <= 0, the bug show the "Full" badge information because the validation include the 1 remaining spot like a "Full" event, the change fix that to show the correctly remaining spot and I add a singular text for show correctly the "1 spot left" text.
