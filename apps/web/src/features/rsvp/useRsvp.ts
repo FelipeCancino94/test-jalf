@@ -7,6 +7,7 @@ export function useRsvp(eventId: string) {
 	// refresh event data after RSVP
 	const invalidateEventQueries = () => {
 		queryClient.invalidateQueries({ queryKey: ["event", eventId] });
+		queryClient.invalidateQueries({ queryKey: ["my-rsvps"] });
 	};
 
 	const rsvpMutation = useMutation({

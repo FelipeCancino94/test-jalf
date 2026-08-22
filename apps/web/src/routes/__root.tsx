@@ -35,6 +35,9 @@ function RootDocument() {
 						<Link to="/" className="text-sm text-zinc-300 hover:text-white">
 							{t("nav.home")}
 						</Link>
+						<Link to="/mine" className="text-sm text-zinc-300 hover:text-white">
+							{t("nav.myRsvps")}
+						</Link>
 					</nav>
 					<main className="mx-auto max-w-2xl px-4 pb-16">
 						<Outlet />
