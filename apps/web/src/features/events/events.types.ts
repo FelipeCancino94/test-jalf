@@ -5,7 +5,16 @@ import { z } from "zod";
 // ---------------------------------------------------------------------------
 
 // some legacy rows have quirky dates — fall back gracefully
-const LegacyStartDateSchema = z.coerce.date().catch(() => new Date(0));
+// export const LegacyStartDateSchema = z.coerce.date().catch(() => new Date(0)); // ---> OLD FUNCTION 
+export const LegacyStartDateSchema = z.string().transform((value, ctx) => {
+	const date = /^\d+$/.test(value) ? new Date(Number(value) * 1000) : new Date(value);
+
+	if (Number.isNaN(date.getTime())) {
+		ctx.addIssue({ code: "custom", message: "Invalid legacy date" });
+		return z.NEVER;
+	}
+	return date;
+});
 
 /** Raw legacy event: snake_case in, camelCase out. */
 export const LegacyEventSchema = z

@@ -77,7 +77,7 @@ export function EventsView({
 function EventCard({ event }: { event: EventItem }) {
 	const spotsLeft = event.capacity - event.attendeeCount;
 	// An event with no spots left is full.
-	const isFull = spotsLeft <= 1;
+	const isFull = spotsLeft <= 0;
 
 	return (
 		<li>

@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import type { EventItem } from "../events.types";
 import { EventsView, type EventsViewProps } from "../events.view";
+import { LegacyStartDateSchema } from "../events.types";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -100,5 +101,33 @@ describe("EventsView — error", () => {
 		expect(
 			screen.getByText("Something went wrong. Try again."),
 		).toBeInTheDocument();
+	});
+});
+
+
+// ---------------------------------------------------------------------------
+// Legacy start_date event
+// ---------------------------------------------------------------------------
+const EPOCH_SECONDS = "1783969200"; // 2026-07-13 19:00 UTC
+
+describe("LegacyStartDateSchema", () => {
+	it("parses ISO-8601 strings", () => {
+		const result = LegacyStartDateSchema.safeParse("2026-05-12T15:00:00.000Z");
+
+		expect(result.success).toBe(true);
+		expect(result.data?.toISOString()).toBe("2026-05-12T15:00:00.000Z");
+	});
+
+	it("parses epoch-seconds strings migrated from legacy v1", () => {
+		const result = LegacyStartDateSchema.safeParse(EPOCH_SECONDS);
+
+		expect(result.success).toBe(true);
+		expect(result.data?.toISOString()).toBe("2026-07-13T19:00:00.000Z");
+	});
+
+	it("never silently falls back to the epoch", () => {
+		const result = LegacyStartDateSchema.safeParse(EPOCH_SECONDS);
+
+		expect(result.data?.getFullYear()).not.toBe(1970);
 	});
 });

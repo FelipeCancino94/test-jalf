@@ -34,13 +34,6 @@ export function useEvents() {
 		}
 	}, [allEvents, filter]);
 
-	// default to upcoming once events load
-	useEffect(() => {
-		if (events.length > 0) {
-			setFilter("upcoming");
-		}
-	}, [events, filter]);
-
 	return {
 		events,
 		filter,
